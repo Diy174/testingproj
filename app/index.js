@@ -1,17 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import "./App.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function App() {
+  const quotes = [
+    "Success is not final, failure is not fatal.",
+    "Believe you can and you're halfway there.",
+    "Dream big and dare to fail.",
+    "Stay hungry, stay foolish.",
+    "Every day is a new beginning."
+  ];
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  const [quote, setQuote] = useState(quotes[0]);
+
+  const generateQuote = () => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    setQuote(quotes[randomIndex]);
+  };
+
+  return (
+    <div className="container">
+      <h1>Quote Generator</h1>
+
+      <div className="quote-box">
+        <p>{quote}</p>
+      </div>
+
+      <button onClick={generateQuote}>
+        Generate Quote
+      </button>
+    </div>
+  );
+}
+
+export default App;
